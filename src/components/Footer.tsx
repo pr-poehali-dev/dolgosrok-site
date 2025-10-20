@@ -31,7 +31,7 @@ const Footer = () => {
                   Telegram канал
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className="w-full justify-center border-white bg-transparent text-white hover:bg-white hover:text-primary" asChild>
+              <Button size="lg" variant="outline" className="w-full justify-center border-white bg-white text-primary hover:bg-white/90" asChild>
                 <a href="https://t.me/+exhEOCpKOXc0ZDI6" target="_blank" rel="noopener noreferrer">
                   <Icon name="MessageCircle" size={20} className="mr-2" />
                   Чат
