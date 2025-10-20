@@ -37,19 +37,22 @@ const Index = () => {
       date: '15 октября 2025',
       title: 'Ребалансировка портфеля: итоги Q3',
       excerpt: 'Разбор текущей структуры портфеля и изменений после завершения третьего квартала',
-      views: '2.3k'
+      views: '2.3k',
+      link: 'https://t.me/DolgosrokInvest'
     },
     {
       date: '10 октября 2025', 
       title: 'Облигации Сбербанка: стоит ли покупать?',
       excerpt: 'Фундаментальный анализ выпуска, оценка доходности и инвестиционный тезис',
-      views: '3.1k'
+      views: '3.1k',
+      link: 'https://t.me/DolgosrokInvest'
     },
     {
       date: '5 октября 2025',
       title: 'Макроэкономика: что ждет рынок',
       excerpt: 'Обзор ключевых макропоказателей и их влияние на российский фондовый рынок',
-      views: '1.8k'
+      views: '1.8k',
+      link: 'https://t.me/DolgosrokInvest'
     }
   ];
 
@@ -189,32 +192,36 @@ const Index = () => {
                 Свежие материалы из Telegram-канала
               </p>
             </div>
-            <Button variant="outline" className="hidden md:flex">
-              <Icon name="ExternalLink" size={18} className="mr-2" />
-              Все публикации
+            <Button variant="outline" className="hidden md:flex" asChild>
+              <a href="https://t.me/DolgosrokInvest" target="_blank" rel="noopener noreferrer">
+                <Icon name="ExternalLink" size={18} className="mr-2" />
+                Все публикации
+              </a>
             </Button>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {posts.map((post, index) => (
-              <Card key={index} className="border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-                    <Icon name="Calendar" size={14} />
-                    <span>{post.date}</span>
-                    <span className="ml-auto flex items-center gap-1">
-                      <Icon name="Eye" size={14} />
-                      {post.views}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3 leading-snug">{post.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{post.excerpt}</p>
-                  <div className="flex items-center text-primary text-sm font-medium">
-                    Читать далее
-                    <Icon name="ArrowRight" size={16} className="ml-1" />
-                  </div>
-                </CardContent>
-              </Card>
+              <a key={index} href={post.link} target="_blank" rel="noopener noreferrer" className="block">
+                <Card className="border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                      <Icon name="Calendar" size={14} />
+                      <span>{post.date}</span>
+                      <span className="ml-auto flex items-center gap-1">
+                        <Icon name="Eye" size={14} />
+                        {post.views}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-bold text-foreground mb-3 leading-snug">{post.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-4">{post.excerpt}</p>
+                    <div className="flex items-center text-primary text-sm font-medium">
+                      Читать далее
+                      <Icon name="ArrowRight" size={16} className="ml-1" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
             ))}
           </div>
         </div>
