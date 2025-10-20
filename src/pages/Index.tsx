@@ -220,41 +220,67 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 bg-muted/30">
         <div className="container mx-auto max-w-4xl">
-          <Card className="bg-primary text-white border-0 shadow-2xl overflow-hidden">
+          <Card className="bg-white border-border">
             <CardContent className="p-12 text-center">
-              <Icon name="Send" size={48} className="mx-auto mb-6 text-white" />
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Присоединяйтесь к сообществу
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+                Наша миссия
               </h2>
-              <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-                Получайте регулярные аналитические материалы, разборы компаний и обучающий контент в нашем Telegram-канале
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                Сделать фундаментальный инвестиционный анализ доступным для каждого. Мы верим, что грамотные долгосрочные инвестиции — это ключ к финансовой независимости и устойчивому росту капитала.
               </p>
-              <Button size="lg" variant="secondary" className="text-base" asChild>
-                <a href="https://t.me/DolgosrokInvest" target="_blank" rel="noopener noreferrer">
-                  <Icon name="Send" size={20} className="mr-2" />
-                  Подписаться на канал
-                </a>
-              </Button>
             </CardContent>
           </Card>
         </div>
       </section>
 
-      <footer className="border-t border-border py-12 px-6">
+      <footer className="bg-primary text-white py-16 px-6">
         <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-2">
-              <span className="font-bold text-foreground">Долгосрок</span>
+          <div className="grid md:grid-cols-3 gap-12 mb-12">
+            <div>
+              <h3 className="text-2xl font-bold mb-4">Долгосрок</h3>
+              <p className="text-white/80 leading-relaxed">
+                Долгосрочные фундаментальные инвестиции, макростатистика и образование
+              </p>
             </div>
-            <p className="text-sm text-muted-foreground">© 2025 Долгосрок. Образовательный инвестиционный проект</p>
-            <div className="flex gap-4">
-              <Button variant="ghost" size="icon" asChild>
-                <a href="https://t.me/DolgosrokInvest" target="_blank" rel="noopener noreferrer">
-                  <Icon name="Send" size={20} />
-                </a>
-              </Button>
+            
+            <div>
+              <h4 className="font-bold mb-4">Контакты</h4>
+              <div className="space-y-3 text-white/80">
+                <p>Telegram: @DolgosrokInvest</p>
+                <p>Админ: @dolgosrok_admin</p>
+                <p>5 000+ подписчиков</p>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="font-bold mb-4">Присоединяйтесь</h4>
+              <div className="space-y-3">
+                <Button size="lg" variant="secondary" className="w-full justify-center bg-green-500 hover:bg-green-600 text-white border-0" asChild>
+                  <a href="https://t.me/DolgosrokInvest" target="_blank" rel="noopener noreferrer">
+                    <Icon name="Send" size={20} className="mr-2" />
+                    Telegram канал
+                  </a>
+                </Button>
+                <Button size="lg" variant="outline" className="w-full justify-center border-white text-white hover:bg-white/10" asChild>
+                  <a href="https://t.me/dolgosrok_admin" target="_blank" rel="noopener noreferrer">
+                    <Icon name="MessageCircle" size={20} className="mr-2" />
+                    Чат
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-white/20 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/70">
+              <p>© 2025 Долгосрок. Все права защищены.</p>
+              <div className="flex gap-6">
+                <a href="#" className="hover:text-white transition-colors">Политика конфиденциальности</a>
+                <a href="#" className="hover:text-white transition-colors">Пользовательское соглашение</a>
+                <a href="#" className="hover:text-white transition-colors">Ограничение ответственности</a>
+              </div>
             </div>
           </div>
         </div>
