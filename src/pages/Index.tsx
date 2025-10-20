@@ -59,18 +59,17 @@ const Index = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <Icon name="TrendingUp" size={24} className="text-white" />
-              </div>
               <span className="text-xl font-bold text-foreground">Долгосрок</span>
             </div>
             <div className="hidden md:flex items-center gap-8">
               <a href="#about" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">О проекте</a>
               <a href="#advantages" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">Преимущества</a>
               <a href="#posts" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">Публикации</a>
-              <Button size="sm">
-                <Icon name="Send" size={16} className="mr-2" />
-                Telegram
+              <Button size="sm" asChild>
+                <a href="https://t.me/DolgosrokInvest" target="_blank" rel="noopener noreferrer">
+                  <Icon name="Send" size={16} className="mr-2" />
+                  Telegram
+                </a>
               </Button>
             </div>
           </div>
@@ -91,9 +90,11 @@ const Index = () => {
                 Фундаментальный анализ российского рынка акций, макростатистика и образовательный контент для осознанных инвестиций
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="text-base">
-                  <Icon name="Send" size={20} className="mr-2" />
-                  Подписаться на канал
+                <Button size="lg" className="text-base" asChild>
+                  <a href="https://t.me/DolgosrokInvest" target="_blank" rel="noopener noreferrer">
+                    <Icon name="Send" size={20} className="mr-2" />
+                    Подписаться на канал
+                  </a>
                 </Button>
                 <Button size="lg" variant="outline" className="text-base">
                   <Icon name="BarChart3" size={20} className="mr-2" />
@@ -108,17 +109,6 @@ const Index = () => {
                   alt="Investment analytics"
                   className="w-full h-full object-cover"
                 />
-              </div>
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-6 border border-border">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
-                    <Icon name="TrendingUp" size={24} className="text-accent" />
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-foreground">+32%</div>
-                    <div className="text-sm text-muted-foreground">Год к году</div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -244,9 +234,11 @@ const Index = () => {
               <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
                 Получайте регулярные аналитические материалы, разборы компаний и обучающий контент в нашем Telegram-канале
               </p>
-              <Button size="lg" variant="secondary" className="text-base">
-                <Icon name="Send" size={20} className="mr-2" />
-                Подписаться на канал
+              <Button size="lg" variant="secondary" className="text-base" asChild>
+                <a href="https://t.me/DolgosrokInvest" target="_blank" rel="noopener noreferrer">
+                  <Icon name="Send" size={20} className="mr-2" />
+                  Подписаться на канал
+                </a>
               </Button>
             </CardContent>
           </Card>
@@ -257,15 +249,14 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Icon name="TrendingUp" size={20} className="text-white" />
-              </div>
               <span className="font-bold text-foreground">Долгосрок</span>
             </div>
             <p className="text-sm text-muted-foreground">© 2025 Долгосрок. Образовательный инвестиционный проект</p>
             <div className="flex gap-4">
-              <Button variant="ghost" size="icon">
-                <Icon name="Send" size={20} />
+              <Button variant="ghost" size="icon" asChild>
+                <a href="https://t.me/DolgosrokInvest" target="_blank" rel="noopener noreferrer">
+                  <Icon name="Send" size={20} />
+                </a>
               </Button>
             </div>
           </div>
