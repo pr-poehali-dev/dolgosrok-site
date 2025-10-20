@@ -1,0 +1,10 @@
+{
+  "tests": [
+    {
+      "name": "Get telegram posts",
+      "method": "GET",
+      "path": "/?limit=3",
+      "expectedStatus": 200
+    }
+  ]
+}

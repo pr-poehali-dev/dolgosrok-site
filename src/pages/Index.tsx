@@ -1,6 +1,16 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import { useState, useEffect } from 'react';
+
+interface Post {
+  date: string;
+  title: string;
+  excerpt: string;
+  views: string;
+  link: string;
+  tag: string;
+}
 
 const Index = () => {
   const stats = [
@@ -32,29 +42,29 @@ const Index = () => {
     }
   ];
 
-  const posts = [
+  const [posts, setPosts] = useState<Post[]>([
     {
-      date: '15 октября 2025',
-      title: 'Ребалансировка портфеля: итоги Q3',
-      excerpt: 'Разбор текущей структуры портфеля и изменений после завершения третьего квартала',
+      date: '14 октября 2025',
+      title: 'Гельтек-Медика: 22% — много или мало для дебюта?',
+      excerpt: 'Мы давно не рассматривали первичные размещения. Особенно среди дебютантов...',
       views: '2.3k',
-      link: 'https://t.me/DolgosrokInvest'
-    },
-    {
-      date: '10 октября 2025', 
-      title: 'Облигации Сбербанка: стоит ли покупать?',
-      excerpt: 'Фундаментальный анализ выпуска, оценка доходности и инвестиционный тезис',
-      views: '3.1k',
-      link: 'https://t.me/DolgosrokInvest'
-    },
-    {
-      date: '5 октября 2025',
-      title: 'Макроэкономика: что ждет рынок',
-      excerpt: 'Обзор ключевых макропоказателей и их влияние на российский фондовый рынок',
-      views: '1.8k',
-      link: 'https://t.me/DolgosrokInvest'
+      link: 'https://t.me/DolgosrokInvest/1233',
+      tag: 'Облигации'
     }
-  ];
+  ]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('https://functions.poehali.dev/98fb22fa-2e09-4aa7-a4c5-c212b46514f8?limit=3')
+      .then(res => res.json())
+      .then(data => {
+        if (data.posts && data.posts.length > 0) {
+          setPosts(data.posts);
+        }
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -205,13 +215,18 @@ const Index = () => {
               <a key={index} href={post.link} target="_blank" rel="noopener noreferrer" className="block">
                 <Card className="border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full">
                   <CardContent className="p-6">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-                      <Icon name="Calendar" size={14} />
-                      <span>{post.date}</span>
-                      <span className="ml-auto flex items-center gap-1">
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground mb-4">
+                      <div className="flex items-center gap-1">
+                        <Icon name="Calendar" size={14} />
+                        <span>{post.date}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
                         <Icon name="Eye" size={14} />
-                        {post.views}
-                      </span>
+                        <span>{post.views}</span>
+                      </div>
+                    </div>
+                    <div className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full mb-3">
+                      #{post.tag}
                     </div>
                     <h3 className="text-lg font-bold text-foreground mb-3 leading-snug">{post.title}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed mb-4">{post.excerpt}</p>
