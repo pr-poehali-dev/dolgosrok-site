@@ -1,276 +1,270 @@
-import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const Index = () => {
-  const [activeSection, setActiveSection] = useState('about');
+  const stats = [
+    { value: '+32%', label: 'Доходность за 2024' },
+    { value: '5 лет', label: 'Опыт инвестирования' },
+    { value: '15+', label: 'Активных позиций' }
+  ];
 
-  const teamMembers = [
+  const advantages = [
     {
-      name: 'Иван Петров',
-      role: 'Основатель и CEO',
-      description: 'Эксперт по долгосрочным инвестициям с опытом более 15 лет'
+      icon: 'LineChart',
+      title: 'Фундаментальный анализ',
+      description: 'Глубокий анализ компаний и макроэкономических трендов для принятия инвестиционных решений'
     },
     {
-      name: 'Мария Сидорова',
-      role: 'Главный аналитик',
-      description: 'Специалист по фундаментальному анализу и финансовому моделированию'
+      icon: 'Target',
+      title: 'Долгосрочная стратегия',
+      description: 'Инвестиционный горизонт от 3-5 лет с фокусом на качественные активы'
     },
     {
-      name: 'Дмитрий Козлов',
-      role: 'Портфельный управляющий',
-      description: 'Управление активами и оптимизация инвестиционных стратегий'
+      icon: 'BookOpen',
+      title: 'Образовательный контент',
+      description: 'Регулярные разборы компаний, макроситуации и обучающие материалы'
+    },
+    {
+      icon: 'TrendingUp',
+      title: 'Прозрачность',
+      description: 'Открытая история сделок и детальные отчеты о результатах портфеля'
     }
   ];
 
-  const newsItems = [
+  const posts = [
     {
-      id: 1,
       date: '15 октября 2025',
-      title: 'Ребалансировка портфеля: новые возможности',
-      preview: 'Провели полный анализ рынка и внесли коррективы в инвестиционную стратегию.'
+      title: 'Ребалансировка портфеля: итоги Q3',
+      excerpt: 'Разбор текущей структуры портфеля и изменений после завершения третьего квартала',
+      views: '2.3k'
     },
     {
-      id: 2,
-      date: '10 октября 2025',
-      title: 'Итоги третьего квартала 2025',
-      preview: 'Наш портфель показал рост на 12.5% за последний квартал, опередив индекс МосБиржи.'
+      date: '10 октября 2025', 
+      title: 'Анализ Газпрома: стоит ли покупать?',
+      excerpt: 'Фундаментальный анализ компании, оценка справедливой стоимости и инвестиционный тезис',
+      views: '3.1k'
     },
     {
-      id: 3,
       date: '5 октября 2025',
-      title: 'Новые акции в портфеле',
-      preview: 'Добавили в портфель акции технологического сектора с высоким потенциалом роста.'
+      title: 'Макроэкономика: что ждет рынок',
+      excerpt: 'Обзор ключевых макропоказателей и их влияние на российский фондовый рынок',
+      views: '1.8k'
     }
-  ];
-
-  const marketData = [
-    { month: 'Янв', value: 100, index: 100 },
-    { month: 'Фев', value: 105, index: 102 },
-    { month: 'Мар', value: 108, index: 104 },
-    { month: 'Апр', value: 112, index: 106 },
-    { month: 'Май', value: 115, index: 107 },
-    { month: 'Июн', value: 118, index: 108 },
-    { month: 'Июл', value: 122, index: 109 },
-    { month: 'Авг', value: 128, index: 111 },
-    { month: 'Сен', value: 125, index: 110 },
-    { month: 'Окт', value: 132, index: 112 }
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-white sticky top-0 z-50">
+    <div className="min-h-screen">
+      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-border z-50">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Icon name="TrendingUp" size={32} className="text-accent" />
-              <h1 className="text-2xl font-bold text-primary">Долгосрок</h1>
+              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                <Icon name="TrendingUp" size={24} className="text-white" />
+              </div>
+              <span className="text-xl font-bold text-foreground">Долгосрок</span>
             </div>
-            <nav className="hidden md:flex gap-8">
-              <button
-                onClick={() => setActiveSection('about')}
-                className={`text-sm font-medium transition-colors ${
-                  activeSection === 'about' ? 'text-accent' : 'text-secondary hover:text-accent'
-                }`}
-              >
-                О проекте
-              </button>
-              <button
-                onClick={() => setActiveSection('team')}
-                className={`text-sm font-medium transition-colors ${
-                  activeSection === 'team' ? 'text-accent' : 'text-secondary hover:text-accent'
-                }`}
-              >
-                Команда
-              </button>
-              <button
-                onClick={() => setActiveSection('news')}
-                className={`text-sm font-medium transition-colors ${
-                  activeSection === 'news' ? 'text-accent' : 'text-secondary hover:text-accent'
-                }`}
-              >
-                Новости
-              </button>
-              <button
-                onClick={() => setActiveSection('charts')}
-                className={`text-sm font-medium transition-colors ${
-                  activeSection === 'charts' ? 'text-accent' : 'text-secondary hover:text-accent'
-                }`}
-              >
-                Аналитика
-              </button>
-            </nav>
-            <Button className="hidden md:block">Связаться</Button>
+            <div className="hidden md:flex items-center gap-8">
+              <a href="#about" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">О проекте</a>
+              <a href="#advantages" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">Преимущества</a>
+              <a href="#posts" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">Публикации</a>
+              <Button size="sm">
+                <Icon name="Send" size={16} className="mr-2" />
+                Telegram
+              </Button>
+            </div>
           </div>
         </div>
-      </header>
+      </nav>
 
-      <section className="bg-primary text-primary-foreground py-20 md:py-32">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl animate-fade-in">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              Инвестируйте в будущее с уверенностью
+      <section className="pt-32 pb-20 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6 animate-fade-in">
+              <div className="inline-block px-4 py-2 bg-primary/10 rounded-full">
+                <span className="text-sm font-medium text-primary">Долгосрочные инвестиции</span>
+              </div>
+              <h1 className="text-5xl md:text-6xl font-bold text-foreground leading-tight">
+                Инвестируй с умом в долгую
+              </h1>
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                Фундаментальный анализ российского рынка акций, макростатистика и образовательный контент для осознанных инвестиций
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" className="text-base">
+                  <Icon name="Send" size={20} className="mr-2" />
+                  Подписаться на канал
+                </Button>
+                <Button size="lg" variant="outline" className="text-base">
+                  <Icon name="BarChart3" size={20} className="mr-2" />
+                  Смотреть портфель
+                </Button>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="https://cdn.poehali.dev/projects/d6f35895-79e8-49df-b592-5d34befe39e6/files/658be538-b7c9-49d7-91a8-4e3852977d80.jpg"
+                  alt="Investment analytics"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-6 border border-border">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                    <Icon name="TrendingUp" size={24} className="text-accent" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-foreground">+32%</div>
+                    <div className="text-sm text-muted-foreground">Год к году</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-3 gap-8 mt-20 pt-12 border-t border-border">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-4xl font-bold text-primary mb-2">{stat.value}</div>
+                <div className="text-sm text-muted-foreground">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="py-20 px-6 bg-muted/30">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              О проекте Долгосрок
             </h2>
-            <p className="text-xl md:text-2xl mb-8 text-primary-foreground/90">
-              Долгосрочная инвестиционная стратегия, основанная на глубоком анализе и профессиональном подходе
+            <p className="text-xl text-muted-foreground">
+              Инвестиционный проект, созданный для тех, кто хочет научиться инвестировать осознанно и на долгий срок
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" variant="secondary" className="text-lg">
-                <Icon name="FileText" size={20} className="mr-2" />
-                Скачать презентацию
-              </Button>
-              <Button size="lg" variant="outline" className="text-lg bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">
+          </div>
+
+          <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-border">
+            <div className="prose prose-lg max-w-none">
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                <strong className="text-foreground">Долгосрок</strong> — это telegram-канал о долгосрочных фундаментальных инвестициях в российские акции. 
+                Мы делаем акцент на качественном анализе компаний, макроэкономических трендах и обучении основам инвестирования.
+              </p>
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                В канале вы найдете регулярные разборы отдельных компаний, анализ отчетностей, обзоры макроситуации 
+                и образовательные материалы для начинающих инвесторов.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Наша философия — инвестировать в понятные бизнесы с хорошими фундаментальными показателями 
+                и держать позиции долгосрочно, не поддаваясь краткосрочным колебаниям рынка.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="advantages" className="py-20 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Почему Долгосрок
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              Профессиональный подход к долгосрочным инвестициям на российском рынке
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {advantages.map((item, index) => (
+              <Card key={index} className="border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                <CardContent className="p-8">
+                  <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                    <Icon name={item.icon as any} size={28} className="text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-3">{item.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="posts" className="py-20 px-6 bg-muted/30">
+        <div className="container mx-auto max-w-6xl">
+          <div className="flex items-end justify-between mb-12">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+                Последние публикации
+              </h2>
+              <p className="text-xl text-muted-foreground">
+                Свежие материалы из Telegram-канала
+              </p>
+            </div>
+            <Button variant="outline" className="hidden md:flex">
+              <Icon name="ExternalLink" size={18} className="mr-2" />
+              Все публикации
+            </Button>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {posts.map((post, index) => (
+              <Card key={index} className="border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                    <Icon name="Calendar" size={14} />
+                    <span>{post.date}</span>
+                    <span className="ml-auto flex items-center gap-1">
+                      <Icon name="Eye" size={14} />
+                      {post.views}
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-bold text-foreground mb-3 leading-snug">{post.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{post.excerpt}</p>
+                  <div className="flex items-center text-primary text-sm font-medium">
+                    Читать далее
+                    <Icon name="ArrowRight" size={16} className="ml-1" />
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-6">
+        <div className="container mx-auto max-w-4xl">
+          <Card className="bg-primary text-white border-0 shadow-2xl overflow-hidden">
+            <CardContent className="p-12 text-center">
+              <Icon name="Send" size={48} className="mx-auto mb-6 text-white" />
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Присоединяйтесь к сообществу
+              </h2>
+              <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+                Получайте регулярные аналитические материалы, разборы компаний и обучающий контент в нашем Telegram-канале
+              </p>
+              <Button size="lg" variant="secondary" className="text-base">
                 <Icon name="Send" size={20} className="mr-2" />
-                Telegram канал
+                Подписаться на канал
               </Button>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
-      <section id="about" className="py-16 md:py-24 bg-muted/30">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h3 className="text-3xl md:text-4xl font-bold mb-8 text-primary">О проекте Долгосрок</h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              <Card className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <Icon name="Target" size={40} className="text-accent mb-4" />
-                  <CardTitle>Наша цель</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Формирование диверсифицированного инвестиционного портфеля с горизонтом от 5 лет
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <Icon name="BarChart3" size={40} className="text-accent mb-4" />
-                  <CardTitle>Наш подход</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Фундаментальный анализ компаний и макроэкономических трендов для выбора активов
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <Icon name="Shield" size={40} className="text-accent mb-4" />
-                  <CardTitle>Наша философия</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Консервативное управление рисками и прозрачность всех операций для инвесторов
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="team" className="py-16 md:py-24">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h3 className="text-3xl md:text-4xl font-bold mb-12 text-primary text-center">Наша команда</h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              {teamMembers.map((member, index) => (
-                <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-accent/10 flex items-center justify-center">
-                      <Icon name="User" size={48} className="text-accent" />
-                    </div>
-                    <CardTitle className="text-xl">{member.name}</CardTitle>
-                    <p className="text-accent font-medium">{member.role}</p>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground text-sm">{member.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="news" className="py-16 md:py-24 bg-muted/30">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h3 className="text-3xl md:text-4xl font-bold mb-12 text-primary">Последние новости</h3>
-            <div className="space-y-6">
-              {newsItems.map((news) => (
-                <Card key={news.id} className="hover:shadow-lg transition-shadow cursor-pointer">
-                  <CardHeader>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                      <Icon name="Calendar" size={16} />
-                      <span>{news.date}</span>
-                    </div>
-                    <CardTitle className="text-xl">{news.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">{news.preview}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-            <div className="mt-8 text-center">
-              <Button variant="outline" size="lg">
-                <Icon name="ExternalLink" size={20} className="mr-2" />
-                Смотреть все в Telegram
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="charts" className="py-16 md:py-24">
-        <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto">
-            <h3 className="text-3xl md:text-4xl font-bold mb-12 text-primary">Динамика портфеля</h3>
-            <Card className="p-6">
-              <div className="mb-6">
-                <h4 className="text-xl font-semibold mb-2">Сравнение с индексом МосБиржи</h4>
-                <p className="text-muted-foreground">Доходность за 10 месяцев 2025 года</p>
-              </div>
-              <ResponsiveContainer width="100%" height={400}>
-                <LineChart data={marketData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-                  <XAxis dataKey="month" stroke="#8E9196" />
-                  <YAxis stroke="#8E9196" />
-                  <Tooltip />
-                  <Line type="monotone" dataKey="value" stroke="#0EA5E9" strokeWidth={3} name="Долгосрок" />
-                  <Line type="monotone" dataKey="index" stroke="#8E9196" strokeWidth={2} strokeDasharray="5 5" name="Индекс МосБиржи" />
-                </LineChart>
-              </ResponsiveContainer>
-              <div className="mt-6 grid grid-cols-2 gap-4">
-                <div className="bg-accent/5 p-4 rounded-lg">
-                  <p className="text-sm text-muted-foreground mb-1">Доходность портфеля</p>
-                  <p className="text-2xl font-bold text-accent">+32%</p>
-                </div>
-                <div className="bg-secondary/10 p-4 rounded-lg">
-                  <p className="text-sm text-muted-foreground mb-1">Доходность индекса</p>
-                  <p className="text-2xl font-bold text-secondary">+12%</p>
-                </div>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      <footer className="border-t border-border py-12 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-6">
+      <footer className="border-t border-border py-12 px-6">
+        <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2">
-              <Icon name="TrendingUp" size={28} className="text-accent" />
-              <span className="text-xl font-bold">Долгосрок</span>
+              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                <Icon name="TrendingUp" size={20} className="text-white" />
+              </div>
+              <span className="font-bold text-foreground">Долгосрок</span>
             </div>
-            <p className="text-primary-foreground/80">© 2025 Долгосрок. Инвестиционный проект</p>
+            <p className="text-sm text-muted-foreground">© 2025 Долгосрок. Образовательный инвестиционный проект</p>
             <div className="flex gap-4">
-              <Button variant="ghost" size="icon" className="text-primary-foreground hover:text-accent">
+              <Button variant="ghost" size="icon">
                 <Icon name="Send" size={20} />
               </Button>
             </div>
