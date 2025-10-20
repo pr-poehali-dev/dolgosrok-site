@@ -264,7 +264,7 @@ const Index = () => {
                   </a>
                 </Button>
                 <Button size="lg" variant="outline" className="w-full justify-center border-white text-white hover:bg-white/10" asChild>
-                  <a href="https://t.me/dolgosrok_admin" target="_blank" rel="noopener noreferrer">
+                  <a href="https://t.me/+exhEOCpKOXc0ZDI6" target="_blank" rel="noopener noreferrer">
                     <Icon name="MessageCircle" size={20} className="mr-2" />
                     Чат
                   </a>
@@ -279,7 +279,7 @@ const Index = () => {
               <div className="flex gap-6">
                 <a href="#" className="hover:text-white transition-colors">Политика конфиденциальности</a>
                 <a href="#" className="hover:text-white transition-colors">Пользовательское соглашение</a>
-                <a href="#" className="hover:text-white transition-colors">Ограничение ответственности</a>
+                <a href="https://telegra.ph/Zayavlenie-ob-ogranichenii-otvetstvennosti-01-15" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Ограничение ответственности</a>
               </div>
             </div>
           </div>
