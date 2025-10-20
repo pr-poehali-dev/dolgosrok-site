@@ -210,35 +210,44 @@ const Index = () => {
             </Button>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {posts.map((post, index) => (
-              <a key={index} href={post.link} target="_blank" rel="noopener noreferrer" className="block">
-                <Card className="border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-3 text-sm text-muted-foreground mb-4">
-                      <div className="flex items-center gap-1">
-                        <Icon name="Calendar" size={14} />
-                        <span>{post.date}</span>
+          {loading ? (
+            <div className="flex items-center justify-center py-20">
+              <div className="flex flex-col items-center gap-4">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                <p className="text-muted-foreground">Загрузка публикаций...</p>
+              </div>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-3 gap-6">
+              {posts.map((post, index) => (
+                <a key={index} href={post.link} target="_blank" rel="noopener noreferrer" className="block">
+                  <Card className="border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3 text-sm text-muted-foreground mb-4">
+                        <div className="flex items-center gap-1">
+                          <Icon name="Calendar" size={14} />
+                          <span>{post.date}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Icon name="Eye" size={14} />
+                          <span>{post.views}</span>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <Icon name="Eye" size={14} />
-                        <span>{post.views}</span>
+                      <div className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full mb-3">
+                        #{post.tag}
                       </div>
-                    </div>
-                    <div className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full mb-3">
-                      #{post.tag}
-                    </div>
-                    <h3 className="text-lg font-bold text-foreground mb-3 leading-snug">{post.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-4">{post.excerpt}</p>
-                    <div className="flex items-center text-primary text-sm font-medium">
-                      Читать далее
-                      <Icon name="ArrowRight" size={16} className="ml-1" />
-                    </div>
-                  </CardContent>
-                </Card>
-              </a>
-            ))}
-          </div>
+                      <h3 className="text-lg font-bold text-foreground mb-3 leading-snug">{post.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed mb-4">{post.excerpt}</p>
+                      <div className="flex items-center text-primary text-sm font-medium">
+                        Читать далее
+                        <Icon name="ArrowRight" size={16} className="ml-1" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
