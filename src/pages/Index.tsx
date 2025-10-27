@@ -16,9 +16,9 @@ interface Post {
 
 const Index = () => {
   const stats = [
-    { value: '>40%', label: 'Доходность с старта' },
-    { value: '5 лет', label: 'Опыт инвестирования' },
-    { value: '5000+', label: 'Читателей' }
+    { value: '>40%', label: 'Доходность портфеля облигаций со старта проекта' },
+    { value: '>15 лет', label: 'Совокупный опыт команды в области управления капиталом, сделок слияний и поглощений (M&A), стратегического консалтинга и частных инвестиций (PE)' },
+    { value: '500+', label: 'Аналитических и образовательных публикаций с фокусом на следующие сектора: Ритейл, Логистика, Строительство и МФО' }
   ];
 
   const advantages = [
@@ -122,11 +122,11 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-8 mt-20 pt-12 border-t border-border">
+          <div className="grid md:grid-cols-3 gap-8 md:gap-12 mt-20 pt-12 border-t border-border">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <div className="text-3xl md:text-4xl font-bold text-primary mb-3">{stat.value}</div>
+                <div className="text-sm md:text-base text-muted-foreground leading-relaxed">{stat.label}</div>
               </div>
             ))}
           </div>
