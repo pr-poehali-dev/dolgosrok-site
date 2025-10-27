@@ -46,12 +46,12 @@ const Index = () => {
 
   const [posts, setPosts] = useState<Post[]>([
     {
-      date: '14 октября 2025',
-      title: 'Гельтек-Медика: 22% — много или мало для дебюта?',
-      excerpt: 'Мы давно не рассматривали первичные размещения. Особенно среди дебютантов...',
-      views: '2.3k',
-      link: 'https://t.me/DolgosrokInvest/1233',
-      tag: 'Облигации'
+      date: '27 октября 2025',
+      title: 'Говард Маркс: сборник всех memo за 35 лет',
+      excerpt: 'Говард Маркс опубликовал сборник всех memo в честь 35-летия с написания первого письма инвесторам...',
+      views: '1.2k',
+      link: 'https://t.me/DolgosrokInvest/1244',
+      tag: 'Чтиво'
     }
   ]);
   const [loading, setLoading] = useState(true);
