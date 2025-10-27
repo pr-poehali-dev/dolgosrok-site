@@ -45,8 +45,8 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/70">
             <p>© 2025 Долгосрок. Все права защищены.</p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-white transition-colors">Политика конфиденциальности</a>
-              <a href="#" className="hover:text-white transition-colors">Пользовательское соглашение</a>
+              <a href="/privacy-policy" className="hover:text-white transition-colors">Политика конфиденциальности</a>
+              <a href="/user-agreement" className="hover:text-white transition-colors">Пользовательское соглашение</a>
               <a href="https://telegra.ph/Zayavlenie-ob-ogranichenii-otvetstvennosti-01-15" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Ограничение ответственности</a>
             </div>
           </div>
