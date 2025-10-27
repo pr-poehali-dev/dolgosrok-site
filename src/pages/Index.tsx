@@ -55,17 +55,33 @@ const Index = () => {
     }
   ]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
-  useEffect(() => {
-    fetch('https://functions.poehali.dev/98fb22fa-2e09-4aa7-a4c5-c212b46514f8?limit=3')
+  const fetchPosts = (refresh = false) => {
+    if (refresh) setRefreshing(true);
+    else setLoading(true);
+    
+    const url = refresh 
+      ? 'https://functions.poehali.dev/98fb22fa-2e09-4aa7-a4c5-c212b46514f8?limit=3&refresh=true'
+      : 'https://functions.poehali.dev/98fb22fa-2e09-4aa7-a4c5-c212b46514f8?limit=3';
+    
+    fetch(url, { method: refresh ? 'POST' : 'GET' })
       .then(res => res.json())
       .then(data => {
         if (data.posts && data.posts.length > 0) {
           setPosts(data.posts);
         }
         setLoading(false);
+        setRefreshing(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        setLoading(false);
+        setRefreshing(false);
+      });
+  };
+
+  useEffect(() => {
+    fetchPosts();
   }, []);
 
   return (
@@ -176,21 +192,50 @@ const Index = () => {
 
       <section id="posts" className="py-20 px-6 bg-muted/30">
         <div className="container mx-auto max-w-6xl">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                Последние публикации
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                Свежие материалы из Telegram-канала
-              </p>
+          <div className="mb-12">
+            <div className="flex items-end justify-between mb-4">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+                  Последние публикации
+                </h2>
+                <p className="text-xl text-muted-foreground">
+                  Свежие материалы из Telegram-канала
+                </p>
+              </div>
+              <div className="hidden md:flex gap-3">
+                <Button 
+                  variant="outline" 
+                  onClick={() => fetchPosts(true)}
+                  disabled={refreshing}
+                >
+                  <Icon name={refreshing ? "Loader2" : "RefreshCw"} size={18} className={`mr-2 ${refreshing ? 'animate-spin' : ''}`} />
+                  {refreshing ? 'Обновление...' : 'Обновить'}
+                </Button>
+                <Button variant="outline" asChild>
+                  <a href="https://t.me/DolgosrokInvest" target="_blank" rel="noopener noreferrer">
+                    <Icon name="ExternalLink" size={18} className="mr-2" />
+                    Все публикации
+                  </a>
+                </Button>
+              </div>
             </div>
-            <Button variant="outline" className="hidden md:flex" asChild>
-              <a href="https://t.me/DolgosrokInvest" target="_blank" rel="noopener noreferrer">
-                <Icon name="ExternalLink" size={18} className="mr-2" />
-                Все публикации
-              </a>
-            </Button>
+            <div className="flex md:hidden gap-3">
+              <Button 
+                variant="outline" 
+                onClick={() => fetchPosts(true)}
+                disabled={refreshing}
+                className="flex-1"
+              >
+                <Icon name={refreshing ? "Loader2" : "RefreshCw"} size={18} className={`mr-2 ${refreshing ? 'animate-spin' : ''}`} />
+                {refreshing ? 'Обновление...' : 'Обновить'}
+              </Button>
+              <Button variant="outline" className="flex-1" asChild>
+                <a href="https://t.me/DolgosrokInvest" target="_blank" rel="noopener noreferrer">
+                  <Icon name="ExternalLink" size={18} className="mr-2" />
+                  Все
+                </a>
+              </Button>
+            </div>
           </div>
 
           {loading ? (
@@ -231,6 +276,15 @@ const Index = () => {
               ))}
             </div>
           )}
+
+          <div className="mt-12 text-center">
+            <Button size="lg" variant="outline" asChild>
+              <a href="/posts">
+                <Icon name="BookOpen" size={20} className="mr-2" />
+                Смотреть все публикации
+              </a>
+            </Button>
+          </div>
         </div>
       </section>
 

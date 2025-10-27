@@ -11,6 +11,7 @@ const Navigation = () => {
 
   const menuItems = [
     { path: '/', label: 'Главная' },
+    { path: '/posts', label: 'Публикации' },
     { path: '/experience', label: 'Опыт' },
     { path: '/services', label: 'Услуги' },
     { path: '/analytics', label: 'Аналитика' },
